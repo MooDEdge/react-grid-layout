@@ -754,6 +754,7 @@ export default class ReactGridLayout extends React.Component<Props, State> {
       shouldUpdatePosition && this.setState({ droppingPosition });
     }
 
+    e.persist(); // persist the event as we are passing down into params
     e.stopPropagation();
     e.preventDefault();
   };
