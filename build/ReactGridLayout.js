@@ -123,7 +123,7 @@ var ReactGridLayout = /*#__PURE__*/function (_React$Component) {
     ) {
       // Check the allowedDropTypes if any have been set. If the dataTransfer does not include the specificed drop type, return and do nothing.
       // If allowedDropTypes has not been specified, allow all draggable elements.
-      if (_this.props.allowedDropTypes.length && e.dataTransfer && !e.dataTransfer.types.some(function (type) {
+      if (_this.props.allowedDropTypes !== null && _this.props.allowedDropTypes.length && e.dataTransfer && !e.dataTransfer.types.some(function (type) {
         return _this.props.allowedDropTypes.toLowerCase().includes(type);
       })) {
         return false;

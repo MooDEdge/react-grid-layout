@@ -724,6 +724,7 @@ export default class ReactGridLayout extends React.Component<Props, State> {
     // Check the allowedDropTypes if any have been set. If the dataTransfer does not include the specificed drop type, return and do nothing.
     // If allowedDropTypes has not been specified, allow all draggable elements.
     if (
+      this.props.allowedDropTypes !== null &&
       this.props.allowedDropTypes.length &&
       e.dataTransfer &&
       !e.dataTransfer.types.some(type =>
