@@ -673,7 +673,7 @@ function synchronizeLayoutWithChildren(initialLayout
           validateLayout([g], "ReactGridLayout.children");
         }
 
-        layout[i] = cloneLayoutItem(_objectSpread({}, g, {
+        layout[i] = cloneLayoutItem(_objectSpread(_objectSpread({}, g), {}, {
           i: child.key
         }));
       } else {

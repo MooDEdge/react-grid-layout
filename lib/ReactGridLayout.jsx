@@ -67,6 +67,7 @@ export type Props = {
   isDraggable: boolean,
   isResizable: boolean,
   isDroppable: boolean,
+  allowedDropTypes: string,
   preventCollision: boolean,
   useCSSTransforms: boolean,
   transformScale: number,
@@ -136,6 +137,8 @@ export default class ReactGridLayout extends React.Component<Props, State> {
     draggableCancel: PropTypes.string,
     // A selector for the draggable handler
     draggableHandle: PropTypes.string,
+    // A dataTransfer type that is allowed to drop on the grid.
+    allowedDropTypes: PropTypes.string,
 
     // Deprecated
     verticalCompact: function(props: Props) {
@@ -192,7 +195,6 @@ export default class ReactGridLayout extends React.Component<Props, State> {
     transformScale: PropTypes.number,
     // If true, an external element can trigger onDrop callback with a specific grid position as a parameter
     isDroppable: PropTypes.bool,
-
     //
     // Callbacks
     //
@@ -260,6 +262,7 @@ export default class ReactGridLayout extends React.Component<Props, State> {
     isDraggable: true,
     isResizable: true,
     isDroppable: false,
+    allowedDropTypes: "",
     useCSSTransforms: true,
     transformScale: 1,
     verticalCompact: true,
@@ -718,6 +721,19 @@ export default class ReactGridLayout extends React.Component<Props, State> {
   }
 
   onDragOver = (e: DragOverEvent) => {
+    // Check the allowedDropTypes if any have been set. If the dataTransfer does not include the specificed drop type, return and do nothing.
+    // If allowedDropTypes has not been specified, allow all draggable elements.
+    if (
+      this.props.allowedDropTypes !== null &&
+      this.props.allowedDropTypes.length &&
+      e.dataTransfer &&
+      !e.dataTransfer.types.some(type =>
+        this.props.allowedDropTypes.toLowerCase().includes(type)
+      )
+    ) {
+      return false;
+    }
+
     // we should ignore events from layout's children in Firefox
     // to avoid unpredictable jumping of a dropping placeholder
     if (

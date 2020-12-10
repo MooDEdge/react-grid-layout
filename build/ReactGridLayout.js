@@ -1,5 +1,7 @@
 "use strict";
 
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -19,19 +21,21 @@ var _GridItem = _interopRequireDefault(require("./GridItem"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -39,15 +43,19 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -69,18 +77,18 @@ var isFirefox = false; // Try...catch will protect from navigator not existing (
 
 try {
   isFirefox = /firefox/i.test(navigator.userAgent);
-} catch (e) {}
-/* Ignore */
-
+} catch (e) {
+  /* Ignore */
+}
 /**
  * A reactive, fluid grid layout with draggable, resizable components.
  */
 
 
-var ReactGridLayout =
-/*#__PURE__*/
-function (_React$Component) {
+var ReactGridLayout = /*#__PURE__*/function (_React$Component) {
   _inherits(ReactGridLayout, _React$Component);
+
+  var _super = _createSuper(ReactGridLayout);
 
   // TODO publish internal ReactClass displayName transform
   function ReactGridLayout(props
@@ -94,7 +102,7 @@ function (_React$Component) {
 
     _classCallCheck(this, ReactGridLayout);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(ReactGridLayout).call(this, props, context));
+    _this = _super.call(this, props, context);
 
     _defineProperty(_assertThisInitialized(_this), "state", {
       activeDrag: null,
@@ -113,8 +121,16 @@ function (_React$Component) {
     _defineProperty(_assertThisInitialized(_this), "onDragOver", function (e
     /*: DragOverEvent*/
     ) {
-      // we should ignore events from layout's children in Firefox
+      // Check the allowedDropTypes if any have been set. If the dataTransfer does not include the specificed drop type, return and do nothing.
+      // If allowedDropTypes has not been specified, allow all draggable elements.
+      if (_this.props.allowedDropTypes !== null && _this.props.allowedDropTypes.length && e.dataTransfer && !e.dataTransfer.types.some(function (type) {
+        return _this.props.allowedDropTypes.toLowerCase().includes(type);
+      })) {
+        return false;
+      } // we should ignore events from layout's children in Firefox
       // to avoid unpredictable jumping of a dropping placeholder
+
+
       if (isFirefox && e.nativeEvent.target.className.indexOf(layoutClassName) === -1) {
         return false;
       }
@@ -132,11 +148,11 @@ function (_React$Component) {
 
       if (!_this.state.droppingDOMNode) {
         _this.setState({
-          droppingDOMNode: _react.default.createElement("div", {
+          droppingDOMNode: /*#__PURE__*/_react.default.createElement("div", {
             key: droppingItem.i
           }),
           droppingPosition: droppingPosition,
-          layout: [].concat(_toConsumableArray(layout), [_objectSpread({}, droppingItem, {
+          layout: [].concat(_toConsumableArray(layout), [_objectSpread(_objectSpread({}, droppingItem), {}, {
             x: 0,
             y: 0,
             static: false,
@@ -432,7 +448,7 @@ function (_React$Component) {
       var hasCollisions;
 
       if (preventCollision) {
-        var collisions = (0, _utils.getAllCollisions)(layout, _objectSpread({}, l, {
+        var collisions = (0, _utils.getAllCollisions)(layout, _objectSpread(_objectSpread({}, l), {}, {
           w: w,
           h: h
         })).filter(function (layoutItem) {
@@ -525,7 +541,7 @@ function (_React$Component) {
           useCSSTransforms = _this$props4.useCSSTransforms,
           transformScale = _this$props4.transformScale; // {...this.state.activeDrag} is pretty slow, actually
 
-      return _react.default.createElement(_GridItem.default, {
+      return /*#__PURE__*/_react.default.createElement(_GridItem.default, {
         w: activeDrag.w,
         h: activeDrag.h,
         x: activeDrag.x,
@@ -542,7 +558,7 @@ function (_React$Component) {
         isResizable: false,
         useCSSTransforms: useCSSTransforms,
         transformScale: transformScale
-      }, _react.default.createElement("div", null));
+      }, /*#__PURE__*/_react.default.createElement("div", null));
     }
     /**
      * Given a grid item, set its style attributes & surround in a <Draggable>.
@@ -583,7 +599,7 @@ function (_React$Component) {
 
       var draggable = typeof l.isDraggable === "boolean" ? l.isDraggable : !l.static && isDraggable;
       var resizable = typeof l.isResizable === "boolean" ? l.isResizable : !l.static && isResizable;
-      return _react.default.createElement(_GridItem.default, {
+      return /*#__PURE__*/_react.default.createElement(_GridItem.default, {
         containerWidth: width,
         cols: cols,
         margin: margin,
@@ -631,7 +647,7 @@ function (_React$Component) {
         height: this.containerHeight()
       }, style);
 
-      return _react.default.createElement("div", {
+      return /*#__PURE__*/_react.default.createElement("div", {
         className: mergedClassName,
         style: mergedStyle,
         onDrop: isDroppable ? this.onDrop : _utils.noop,
@@ -708,6 +724,8 @@ _defineProperty(ReactGridLayout, "propTypes", {
   draggableCancel: _propTypes.default.string,
   // A selector for the draggable handler
   draggableHandle: _propTypes.default.string,
+  // A dataTransfer type that is allowed to drop on the grid.
+  allowedDropTypes: _propTypes.default.string,
   // Deprecated
   verticalCompact: function verticalCompact(props
   /*: Props*/
@@ -821,6 +839,7 @@ _defineProperty(ReactGridLayout, "defaultProps", {
   isDraggable: true,
   isResizable: true,
   isDroppable: false,
+  allowedDropTypes: "",
   useCSSTransforms: true,
   transformScale: 1,
   verticalCompact: true,
